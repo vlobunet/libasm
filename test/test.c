@@ -11,25 +11,25 @@ int	main(int c, char **v)
 	if (!c || !v || !v[1])
 		return (1);
 
-	printf("FT_PUTCHAR_FD:\n");
+	printf("\n%s : ", "ft_putchar_fd(const char c, int fd)\n");
 	while (v[1][++i])
 	{
 		#ifdef __FT_putchar_fd
-			ft_putchar_fd(v[1][i], 1);
-		#endif
+			ft_putchar_fd(v[1][i], 2);
+		#endif // __FT_putchar_fd
 	}
-	printf("FT_PUTSTR_FD:\n");
+	printf("\n%s :", "ft_putstr_fd(const char *s, int fd)\n");
 	#ifdef __FT_putstr_fd
-			ft_putstr_fd(v[1], 1);
-	#endif
-	printf("FT_STRLEN\n", );
+			ft_putstr_fd(v[1], 2);
+	#endif // __FT_putstr_fd
+	printf("\n%s :", "ft_strlen(const char *s)");
 	#ifdef __FT_strlen
-			i = ft_strlen(v[1]);
-			printf("sizeof(\"%s\") = %d\n", v[1], i);
-	#endif
-	printf("FT_PUTNBR_FD\n");
+			i = ft_strlen(v[2]);
+			printf("\nsizeof(\"%s\") = %d", v[1], i);
+	#endif // __FT_strlen
+	printf("\nft_putnbr_fd(int nb, int fd) :\n");
 	#ifndef __FT_putnbr_fd
-		ft_putnbr_fd(1234567890);
-	#endif
+		ft_putnbr_fd(-1234567890, 1);
+	#endif // __FT_putnbr_fd
 	return (0);
 }
