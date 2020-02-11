@@ -5,7 +5,9 @@ SRC =	ft_putchar_fd.s \
 		ft_strlen.s \
 		ft_putnbr_fd.s \
 		ft_bzero.s \
-		ft_strcat.s
+		ft_strcat.s \
+		ft_isalpha.s \
+		ft_isdigit.s
 
 OBJDIR = objs
 
