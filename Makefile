@@ -3,7 +3,9 @@ NAME = libfts.a
 SRC =	ft_putchar_fd.s \
 		ft_putstr_fd.s \
 		ft_strlen.s \
-		ft_putnbr_fd.s
+		ft_putnbr_fd.s \
+		ft_bzero.s \
+		ft_strcat.s
 
 OBJDIR = objs
 
