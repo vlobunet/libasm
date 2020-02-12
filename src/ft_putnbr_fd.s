@@ -7,7 +7,6 @@ extern  _ft_putchar_fd
 section .data
 	neg_sign: db "-"
 	special_number: db "-2147483648"
-	len_spec: equ $ - special_number
 
 section .text
 
@@ -52,13 +51,10 @@ _is_one_dec:
 
 _print_special:
 	mov rax, CALL(WRITE)
-	mov		rdi, r8
+	mov rdi, r8
 	lea rsi, [rel special_number]
-	mov rdx, len_spec
+	mov rdx, 11
 	syscall
-
-	mov		esp, ebp
-	pop		rbp
 	ret
 
 _set_neg:

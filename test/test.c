@@ -793,7 +793,27 @@ void	test_puts(void)
 	RESET;
 	puts("");
 }
-
+// ================================================ FT_PUTNBR_FD_TEST ===============================
+void test_putnbr_fd(void)
+{
+	WHITE;
+	write(1, "ft_putnbr  : \n", 15);
+	write(1, "\tft_putnbr_fd(\"-2, 2\")          : ", strlen("\tft_putnbr_fd(\"-2, 2\")          : "));
+	ft_putnbr_fd(-2, 2);
+	write(1, "\n", 1);
+	write(1, "\tft_putnbr_fd(\"2147483647, 2\")  : ", strlen("\tft_putnbr_fd(\"2147483647, 2\")  : "));
+	ft_putnbr_fd(2147483647, 2);
+	write(1, "\n", 1);
+	write(1, "\tft_putnbr_fd(\"1, 2\")           : ", strlen("\tft_putnbr_fd(\"1, 2\")           : "));
+	ft_putnbr_fd(1, 2);
+	write(1, "\n", 1);
+	write(1, "\tft_putnbr_fd(\"2020, 2\")        : ", strlen("\tft_putnbr_fd(\"2020, 2\")        : "));
+	ft_putnbr_fd(2020, 2);
+	write(1, "\n", 1);
+	write(1, "\tft_putnbr_fd(\"-2147483648, 2\") : ", strlen("\tft_putnbr_fd(\"-2147483648, 2\") : "));
+	ft_putnbr_fd(-2147483648, 2);
+	write(1, "\n", 1);
+}
 int	main(int c, char **v)
 {
 	if (!c || !v || !v[1])
@@ -842,5 +862,8 @@ int	main(int c, char **v)
 	#ifdef __FT_putchar_fd
 		test_putchar_fd();
 	#endif
+	#ifdef __FT_putnbr_fd
+		test_putnbr_fd();
+	#endif	
 	return (0);
 }

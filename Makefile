@@ -25,7 +25,7 @@ ASFLAGS = -f macho64 -g
 
 CC = clang
 
-CFLAGS = -Wall -Wextra #-fsanitize=address,undefined -g
+CFLAGS = -Wall -Wextra -fsanitize=address,undefined -g
 
 all: ${NAME}
 	@echo ${G}Success"   "[${NAME}]${X}
