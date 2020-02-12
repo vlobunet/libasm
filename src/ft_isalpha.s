@@ -4,6 +4,7 @@ section	.text
 _ft_isalpha:
 	push	rbp         ; сохраняем указатель в стеке
 	mov		rbp, rsp    ; устанавливаем вершину стека
+
 	cmp		rdi, 'A'	; сравниваем символ с А
 	jl		_ko			; выходим с ошибкой
 	cmp		rdi, 'Z'	; иначе сравниваем с Z
@@ -18,10 +19,11 @@ _ko:
 	xor		rax, rax	; 0
 	mov     rsp, rbp    ; leave
 	pop     rbp 
-	ret					; return rax
+	ret					; rax
 
 _ok:
-	mov		rax, 1		; initialize rax to 1
+	mov		rax, 1		; 1
+
 	mov     rsp, rbp    ; leave
 	pop     rbp 
-	ret					; return rax
+	ret					; rax
