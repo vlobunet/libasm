@@ -1,3 +1,5 @@
+;<==== OK ====> 0 <==== OK ====> 127 <==== KO ====>
+
 section	.text
 	global	_ft_isascii
 

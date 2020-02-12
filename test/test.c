@@ -9,6 +9,9 @@
 #define __FT_isascii
 #define __FT_isprint
 #define __FT_isalnum
+#define __FT_toupper
+#define __FT_tolower
+#define __FT_puts
 
 #include "../includes/asm_libft.h"
 #include <stdio.h> 
@@ -22,9 +25,9 @@
 #define C_YELLOW	"\033[01;38;05;226m OK"
 #define C_RESET		"\033[0m"
 
-#define KO write(1, C_RED, sizeof(C_RED));
+#define KO write(1, C_RED, sizeof(C_RED))
 #define WHITE write(1, C_WHITE, sizeof(C_WHITE));
-#define OK write(1, C_YELLOW, sizeof(C_YELLOW));
+#define OK write(1, C_YELLOW, sizeof(C_YELLOW))
 #define RESET write(1, C_RESET, sizeof(C_RESET));
 
 //====================================== FT_BZERO_TEST ========================
@@ -36,17 +39,10 @@ void	test_bzero_1(void)
 	bzero(control, 10);
 	ft_bzero(subject, 10);
 
-	if (memcmp(subject, control, 10) == 0)
-		OK
-	else
-		KO
-
+	memcmp(subject, control, 10) == 0 ? OK : KO;
 	subject[0] = 'a';
 	ft_bzero(subject, 0);
-	if (strcmp(subject, "a") == 0)
-		OK
-	else
-		KO
+	strcmp(subject, "a") == 0 ? OK : KO;
 	RESET;
 }
 
@@ -101,11 +97,7 @@ void	test_bzero_2(void)
 	ft_bzero(teststr + 5, (unsigned int) 4);
 	bzero(ref_str + 5, (unsigned int) 4);
 
-	
-	if (memcmp(teststr, ref_str, 20) == 0)
-		OK
-	else
-		KO
+	memcmp(teststr, ref_str, 20) == 0 ? OK : KO;
 	RESET;
 }
 
@@ -161,10 +153,7 @@ void	test_bzero_3(void)
 	ft_bzero(teststr, 17);
 	bzero(ref_str, 17);
 
-	if (memcmp(teststr, ref_str, 20) == 0)
-		OK
-	else
-		KO
+	memcmp(teststr, ref_str, 20) == 0 ? OK : KO;
 	RESET;
 }
 
@@ -175,10 +164,7 @@ void test_bzero_4(void)
 
 	bzero(control1, 3);
 	ft_bzero(subject1, 3);
-	if (memcmp(subject1, control1, 10) == 0)
-		OK
-	else
-		KO
+	memcmp(subject1, control1, 10) == 0 ? OK : KO;
 	RESET;
 
 }
@@ -198,37 +184,26 @@ void	test_bzero(void)
 
 static void	test_strlen_1(void)
 {
-	if (ft_strlen("") == strlen(""))
-		OK
-	else
-		KO
+	ft_strlen("") == strlen("") ? OK : KO;
 	RESET;
 }
 
 static void	test_strlen_2(void)
 {
-	if (ft_strlen("abcd\0abcd") == strlen("abcd\0abcd"))
-		OK
-	else
-		KO
+	ft_strlen("abcd\0abcd") == strlen("abcd\0abcd") ? OK : KO;
 	RESET;
 }
 
 static void	test_strlen_3(void)
 {
-	if (ft_strlen("123456789123456789123456789123456789123456789") == strlen("123456789123456789123456789123456789123456789"))
-		OK
-	else
-		KO
+	ft_strlen("123456789123456789123456789123456789123456789") ==
+	strlen("123456789123456789123456789123456789123456789") ? OK : KO;
 	RESET;
 }
 
 static void	test_strlen_4(void)
 {
-	if (ft_strlen(0) == 0)
-		OK
-	else
-		KO
+	ft_strlen(0) == 0 ? OK : KO;
 	RESET;
 }
 
@@ -309,10 +284,7 @@ void test_strcat_1(void)
 	ft_strcat(buf, "our.");
 	ft_strcat(buf, "");
 
-	if (strcmp(buf, "Bonjour.") == 0)
-		OK
-	else
-		KO
+	strcmp(buf, "Bonjour.") == 0 ? OK : KO;
 	RESET;
 }
 
@@ -323,10 +295,7 @@ void	test_strcat_2(void)
 	bzero(buf1, 20);
 	strcpy(buf1, "bzero");
 	ft_strcat(buf1, "bzero");
-	if (strcmp(buf1, "bzerobzero") == 0)
-		OK
-	else
-		KO
+	strcmp(buf1, "bzerobzero") == 0 ? OK : KO;
 	RESET;	
 }
 
@@ -352,10 +321,7 @@ static void	test_isalpha_1(void)
 			ok = 0;
 		i++;
 	}
-	if (ok)
-		OK
-	else
-		KO
+	ok ? OK : KO;
 	RESET;	
 }
 
@@ -370,10 +336,7 @@ static void	test_isalpha_2(void)
 			ok = 0;
 		i++;
 	}
-	if (ok)
-		OK
-	else
-		KO
+	ok ? OK : KO;
 	RESET;
 }
 
@@ -388,10 +351,7 @@ static void	test_isalpha_3(void)
 			ok = 0;
 		i++;
 	}
-	if (ok)
-		OK
-	else
-		KO
+	ok ? OK : KO;
 	RESET;	
 }
 
@@ -406,10 +366,7 @@ static void	test_isalpha_4(void)
 			ok = 0;
 		i++;
 	}
-	if (ok)
-		OK
-	else
-		KO
+	ok ? OK : KO;
 	RESET;
 }
 
@@ -424,10 +381,7 @@ static void	test_isalpha_5(void)
 			ok = 0;
 		i--;
 	}
-	if (ok)
-		OK
-	else
-		KO
+	ok ? OK : KO;
 	RESET;
 }
 
@@ -457,10 +411,7 @@ void	test_isdigit_1(void)
 			ok = 0;
 		i++;
 	}
-	if (ok)
-		OK
-	else
-		KO
+	ok ? OK : KO;
 	RESET;	
 }
 
@@ -475,10 +426,7 @@ void	test_isdigit_2(void)
 			ok = 0;
 		i--;
 	}
-	if (ok)
-		OK
-	else
-		KO
+	ok ? OK : KO;
 	RESET;
 }
 
@@ -493,10 +441,7 @@ void	test_isdigit_3(void)
 			ok = 0;
 		i++;
 	}
-	if (ok)
-		OK
-	else
-		KO
+	ok ? OK : KO;
 	RESET;	
 }
 
@@ -523,10 +468,7 @@ void 	test_isascii_1(void)
 			ok = 0;
 		i++;
 	}
-	if (ok)
-		OK
-	else
-		KO
+	ok ? OK : KO;
 	RESET;	
 }
 
@@ -541,10 +483,7 @@ void 	test_isascii_2(void)
 			ok = 0;
 		i--;
 	}
-	if (ok)
-		OK
-	else
-		KO
+	ok ? OK : KO;
 	RESET;		
 }
 
@@ -559,10 +498,7 @@ void 	test_isascii_3(void)
 			ok = 0;
 		i++;
 	}
-	if (ok)
-		OK
-	else
-		KO
+	ok ? OK : KO;
 	RESET;		
 }
 
@@ -589,10 +525,7 @@ void	test_isalnum_1(void)
 			ok = 0;
 		i--;
 	}
-	if (ok)
-		OK
-	else
-		KO
+	ok ? OK : KO;
 	RESET;		
 }
 
@@ -607,10 +540,7 @@ void	test_isalnum_2(void)
 			ok = 0;
 		i++;
 	}
-	if (ok)
-		OK
-	else
-		KO
+	ok ? OK : KO;
 	RESET;		
 }
 
@@ -625,10 +555,7 @@ void	test_isalnum_3(void)
 			ok = 0;
 		i++;
 	}
-	if (ok)
-		OK
-	else
-		KO
+	ok ? OK : KO;
 	RESET;	
 }
 
@@ -643,10 +570,7 @@ void	test_isalnum_4(void)
 			ok = 0;
 		i++;
 	}
-	if (ok)
-		OK
-	else
-		KO
+	ok ? OK : KO;
 	RESET;	
 }
 
@@ -661,10 +585,7 @@ void	test_isalnum_5(void)
 			ok = 0;
 		i++;
 	}
-	if (ok)
-		OK
-	else
-		KO
+	ok ? OK : KO;
 	RESET;	
 }
 
@@ -679,10 +600,7 @@ void	test_isalnum_6(void)
 			ok = 0;
 		i++;
 	}
-	if (ok)
-		OK
-	else
-		KO
+	ok ? OK : KO;
 	RESET;	
 }
 
@@ -696,6 +614,182 @@ void	test_isalnum(void)
 	test_isalnum_4();
 	test_isalnum_5();
 	test_isalnum_6();
+	RESET;
+	puts("");
+}
+//======================================== FT_ISPRINT_TEST ======================================
+
+void 	test_isprint_1(void)
+{
+	int i = 32;
+	int ok = 1;
+
+	while (i <= 126)
+	{
+		if (ft_isprint(i) == 0)
+			ok = 0;
+		i++;
+	}
+	ok ? OK : KO;
+	RESET;		
+}
+
+void 	test_isprint_2(void)
+{
+	int i = 31;
+	int ok = 1;
+
+	while (i >= -1000)
+	{
+		if (ft_isprint(i) != 0)
+			ok = 0;
+		i--;
+	}
+	ok ? OK : KO;
+	RESET;	
+}
+
+void 	test_isprint_3(void)
+{
+	int i = 127;
+	int ok = 1;
+
+	while (i <= 1000)
+	{
+		if (ft_isprint(i) != 0)
+			ok = 0;
+		i++;
+	}
+	ok ? OK : KO;
+	RESET;	
+}
+
+void	test_isprint(void)
+{
+	WHITE;
+	write(1, "ft_isprint : ", 14);
+	test_isprint_1();
+	test_isprint_2();
+	test_isprint_3();
+	RESET;
+	puts("");
+}
+
+// ====================================== FT_TOUPPER_TEST ================================
+void 	test_toupper_1(void)
+{
+	int i = 'A';
+	int ok = 1;
+
+	while (i <= 'z')
+	{
+		if (ft_toupper(i) != toupper(i))
+			ok = 0;
+		i++;
+	}
+	ok ? OK : KO;
+	RESET;		
+}
+
+void 	test_toupper_2(void)
+{
+	int i = -1000;
+	int ok = 1;
+
+	while (i <= 1000)
+	{
+		if (ft_toupper(i) != toupper(i))
+			ok = 0;
+		i++;
+	}
+	ok ? OK : KO;
+	RESET;		
+}
+
+void	test_toupper(void)
+{
+	WHITE;
+	write(1, "ft_toupper : ", 14);
+	test_toupper_1();
+	test_toupper_2();
+	RESET;
+	puts("");
+}
+
+// ================================== FT_TOLOWER_TEST =======================================
+void 	test_tolower_1(void)
+{
+	int i = 'A';
+	int ok = 1;
+
+	while (i <= 'z')
+	{
+		if (ft_tolower(i) != tolower(i))
+			ok = 0;
+		i++;
+	}
+	ok ? OK : KO;
+	RESET;		
+}
+
+void 	test_tolower_2(void)
+{
+	int i = -1000;
+	int ok = 1;
+
+	while (i <= 1000)
+	{
+		if (ft_tolower(i) != tolower(i))
+			ok = 0;
+		i++;
+	}
+	ok ? OK : KO;
+	RESET;
+}
+
+void	test_tolower(void)
+{
+	WHITE;
+	write(1, "ft_tolower : ", 14);
+	test_tolower_1();
+	test_tolower_2();
+	RESET;
+	puts("");
+}
+
+static void test_puts_1(void)
+{
+	write(1, "\n\t1. check if string is null : \n", strlen("\n\t1. check if string is null : \n"));
+	char	*str = 0;
+	write(1, "\t\tstr = 0 => ft_puts : ", strlen("\t\tstr = 0 => ft_puts : "));
+	ft_puts(str);
+}
+
+static void	test_puts_2(void)
+{
+	write(1, "\n\t2. check when string length is equal to 0 : \n", strlen("\n\t2. check when string length is equal to 0 : \n"));
+	char	*str = "";
+	write(1, "\t\tstr = \"\" => ft_puts : [", strlen("\t\tstr = \"\" => ft_puts : ["));
+	ft_puts(str);
+	write(1, "]\n", 2);
+}
+
+static void	test_puts_3(void)
+{
+	write(1, "\n\t3. print string : \n", strlen("\n\t3. print string : \n"));
+	char	*str = "abcabc\0abc\n";
+	write(1, "\t\tstr = \"abcabc\\0abc\\n\" => ft_puts : [", strlen("\t\tstr = \"abcabc\\0abc\\n\" => ft_puts : ["));
+	ft_puts(str);
+	write(1, "]\n", 2);
+}
+
+void	test_puts(void)
+{
+	WHITE;
+	write(1, "ft_puts    : ", 14);
+	test_puts_1();
+	test_puts_2();
+	test_puts_3();
 	RESET;
 	puts("");
 }
@@ -722,7 +816,19 @@ int	main(int c, char **v)
 	#endif
 	#ifdef __FT_isalnum
 		test_isalnum();
-	#endif	
+	#endif
+	#ifdef __FT_isprint
+		test_isprint();
+	#endif
+	#ifdef __FT_toupper
+		test_toupper();
+	#endif
+	#ifdef __FT_tolower
+		test_tolower();
+	#endif
+	#ifdef __FT_puts
+		test_puts();
+	#endif
 	printf("================ Part 1 - Simple libc functions =============\n");
 	#ifdef __FT_strlen
 		test_strlen();
@@ -735,8 +841,6 @@ int	main(int c, char **v)
 	#endif
 	#ifdef __FT_putchar_fd
 		test_putchar_fd();
-	#endif
-	#ifdef __FT_isprint_fd
 	#endif
 	return (0);
 }

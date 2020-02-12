@@ -1,3 +1,5 @@
+; <==== KO ====> 0 <==== OK ====> 9 <==== KO ====>
+
 section	.text
 	global	_ft_isdigit
 

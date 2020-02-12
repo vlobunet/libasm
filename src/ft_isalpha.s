@@ -1,3 +1,6 @@
+
+; <==== KO ====> 'A' <=== OK ===> 'Z' <==== KO ====> 'a' <=== OK ===> 'z' <==== KO ====>
+
 section	.text
 	global	_ft_isalpha
 
