@@ -1,34 +1,29 @@
 ;# **************************************************************************** #
 ;#                                                                              #
 ;#                                                         :::      ::::::::    #
-;#    ft_bzero.s                                         :+:      :+:    :+:    #
+;#    ft_strnew.s                                        :+:      :+:    :+:    #
 ;#                                                     +:+ +:+         +:+      #
 ;#    By: vlobunet <marvin@42.fr>                    +#+  +:+       +#+         #
 ;#                                                 +#+#+#+#+#+   +#+            #
-;#    Created: 2020/02/15 12:23:48 by vlobunet          #+#    #+#              #
-;#    Updated: 2020/02/15 12:23:52 by vlobunet         ###   ########.fr        #
+;#    Created: 2020/02/15 16:23:36 by vlobunet          #+#    #+#              #
+;#    Updated: 2020/02/15 16:23:38 by vlobunet         ###   ########.fr        #
 ;#                                                                              #
 ;# **************************************************************************** #
 
-section .text
-	global  _ft_bzero
+extern	_ft_memalloc
 
-_ft_bzero:
+section	.text
+
+global	_ft_strnew
+
+_ft_strnew:
 	push	rbp				; сохраням в стек адрес возврата
 	mov		rbp, rsp		; вершина стека
 	push	rdi				; сохраняем значение rdi
-	
-_loop:
-	cmp		rsi, 0			; сравниваем размер с 0
-	jle		_return			; если 0 то переходим на return
-	mov		byte [rdi], 0	; иначе заполняем массив 0
-	inc		rdi				; переходим к следующему индексу
-	dec		rsi				; уменьшаем требуемо колличество для заполнения
-	jmp		_loop			; повторяем
 
-_return:
-	pop     rdi				; возвращаем rdi из стека
-	mov     rax, rdi
-	mov     rsp, rbp		; leave
-	pop     rbp
+	call	_ft_memalloc
+
+	pop		rdi				; возвращаем из стека указатель
+	mov		rsp, rbp		; восстанавливаем адрес возврата
+	pop		rbp
 	ret

@@ -16,6 +16,9 @@
 #define __FT_memset
 #define __FT_strdup
 #define __FT_cat
+#define __FT_putendl
+#define __FT_memalloc
+#define __FT_strnew
 
 #include "../includes/asm_libft.h"
 #include <stdio.h> 
@@ -956,6 +959,66 @@ void test_ft_cat(char *v, int fd)
 	}
 }
 
+// ========================================= FT_PUTENDL =======================================
+
+static void test_putendl_1(void)
+{
+	write(1, "\n\t1. check if string is null : \n", strlen("\n\t1. check if string is null : \n"));
+	char	*str = 0;
+	write(1, "\t\tstr = 0 => ft_putendl : [", strlen("\t\tstr = 0 => ft_putendl : ["));
+	ft_putendl(str);
+	write(1, "]\n", 1);
+}
+
+static void	test_putendl_2(void)
+{
+	write(1, "\n\t2. check when string length is equal to 0 : \n", strlen("\n\t2. check when string length is equal to 0 : \n"));
+	char	*str = "";
+	write(1, "\t\tstr = \"\" => ft_putendl : [", strlen("\t\tstr = \"\" => ft_putendl : ["));
+	ft_putendl(str);
+	write(1, "]\n", 2);
+}
+
+static void	test_putendl_3(void)
+{
+	write(1, "\n\t3. print string : \n", strlen("\n\t3. print string : \n"));
+	char	*str = "abcabc\0abc\n";
+	write(1, "\t\tstr = \"abcabc\\0abc\\n\" => ft_putendl : [", strlen("\t\tstr = \"abcabc\\0abc\\n\" => ft_putendl : ["));
+	ft_putendl(str);
+	write(1, "]\n", 2);
+}
+
+void	test_putendl(void)
+{
+	WHITE;
+	write(1, "ft_putendl : ", 14);
+	test_putendl_1();
+	test_putendl_2();
+	test_putendl_3();
+	RESET;
+	puts("");
+}
+
+void			test_memalloc()
+{
+
+	WHITE;
+	write(1, "ft_memalloc :\n", 14);
+	char *str = ft_memalloc(0);
+	printf("ft_memalloc(0) NULL ??? -> %p\n", str);
+	str = ft_memalloc(7);
+	printf("ft_memalloc(7)  address -> %p\n", str);
+	printf("ft_memalloc(7)  content -> [%c][%c][%c][%c][%c][%c][%c]\n",
+		str[0], str[1], str[2], str[3], str[4], str[5], str[6]);
+	free(str);
+	RESET;
+}
+
+void test_strnew(void)
+{
+
+}
+
 int	main(int c, char **v)
 {
 	if (!c || !v || !v[1])
@@ -1018,5 +1081,16 @@ int	main(int c, char **v)
 	#ifdef __FT_putnbr_fd
 		test_putnbr_fd();
 	#endif	
+	#ifdef __FT_putendl
+		test_putendl();
+	#endif
+	#ifdef __FT_memalloc
+	#ifdef __FT_memalloc
+		test_memalloc();
+	#endif
+	#endif
+	#ifdef __FT_strnew
+		test_strnew();
+	#endif
 	return (0);
 }
