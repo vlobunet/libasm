@@ -12,6 +12,8 @@
 #define __FT_toupper
 #define __FT_tolower
 #define __FT_puts
+#define __FT_memcpy
+#define __FT_memset
 
 #include "../includes/asm_libft.h"
 #include <stdio.h> 
@@ -210,7 +212,7 @@ static void	test_strlen_4(void)
 void	test_strlen(void)
 {
 	WHITE;
-	write(1, "ft_strlen  : ", 12);
+	write(1, "ft_strlen  : ", 14);
 	test_strlen_1();
 	test_strlen_2();
 	test_strlen_3();
@@ -814,6 +816,114 @@ void test_putnbr_fd(void)
 	ft_putnbr_fd(-2147483648, 2);
 	write(1, "\n", 1);
 }
+//================================== FT_MEMCPY_TEST =============================================
+
+static void test_memcpy_3(void)
+{
+	char memcpy_test[][10] = {{"qwerty"}, {"ZXCVB"}, {"asdfg"}};
+	char ft_memcpy_test[][10] = {{"qwerty"}, {"ZXCVB"}, {"asdfg"}};
+	int j = 0;
+	int k = 0;
+
+	memcpy(memcpy_test[2], memcpy_test[2], 3);
+	ft_memcpy(ft_memcpy_test[2], ft_memcpy_test[2], 3);
+	while (j < 5)
+	{
+		if (memcpy_test[2][j] != ft_memcpy_test[2][j])
+		k++;
+		j++;
+	}
+	j = 0;
+	k == 0 ? OK : KO;
+	RESET;
+}
+
+
+static void test_memcpy_2(void)
+{
+	char memcpy_test[][10] = {{"qwerty"}, {"ZXCVB"}, {"asdfg"}};
+	char ft_memcpy_test[][10] = {{"qwerty"}, {"ZXCVB"}, {"asdfg"}};
+	int j = 0;
+	int k = 0;
+
+	memcpy(memcpy_test[1], memcpy_test[1], 3);
+	ft_memcpy(ft_memcpy_test[1], ft_memcpy_test[1], 3);
+	while (j < 5)
+	{
+		if (memcpy_test[1][j] != ft_memcpy_test[1][j])
+		k++;
+		j++;
+	}
+	j = 0;
+	k == 0 ? OK : KO;
+	RESET;
+}
+
+static void test_memcpy_1(void)
+{
+	char memcpy_test[][10] = {{"qwerty"}, {"ZXCVB"}, {"asdfg"}};
+	char ft_memcpy_test[][10] = {{"qwerty"}, {"ZXCVB"}, {"asdfg"}};
+	int j = 0;
+	int k = 0;
+
+	memcpy(memcpy_test[0], memcpy_test[0], 3);
+	ft_memcpy(ft_memcpy_test[0], ft_memcpy_test[0], 3);
+	while (j < 5)
+	{
+		if (memcpy_test[0][j] != ft_memcpy_test[0][j])
+		k++;
+		j++;
+	}
+	j = 0;
+	k == 0 ? OK : KO;
+	RESET;
+}
+
+void	test_memcpy(void)
+{
+	WHITE;
+	write(1, "ft_memcpy  : ", 14);
+	test_memcpy_1();
+	test_memcpy_2();
+	test_memcpy_3();
+	RESET;
+	puts("");
+}
+// ======================================== FT_MEMSET_TEST ===================================
+static void	test_memset_1(void)
+{
+	char	b1[100], b2[100];
+
+	ft_memset(b1, 42, 100);
+	memset(b2, 42, 100);
+	memcmp(b1, b2, 100) == 0 ? OK : KO;
+	RESET;
+
+}
+
+static void	test_memset_2(void)
+{
+	memcmp(ft_memset(strdup("abcd"), 'A', 5), memset(strdup("abcd"), 'A', 5), 5) == 0 ? OK : KO;
+	RESET;
+}
+
+static void	test_memset_3(void)
+{
+	memcmp(ft_memset(strdup("abcd"), 0, 0), memset(strdup("abcd"), 0, 0), 5) == 0 ? OK : KO;
+	RESET;
+}
+
+void	test_memset(void)
+{
+	WHITE;
+	write(1, "ft_memset  :  ", 13);
+	test_memset_1();
+	test_memset_2();
+	test_memset_3();
+	RESET;
+	puts("");	
+}
+
 int	main(int c, char **v)
 {
 	if (!c || !v || !v[1])
@@ -849,9 +959,15 @@ int	main(int c, char **v)
 	#ifdef __FT_puts
 		test_puts();
 	#endif
-	printf("================ Part 1 - Simple libc functions =============\n");
+	printf("========= Part 2 - A little less simple libc functions ======\n");
 	#ifdef __FT_strlen
 		test_strlen();
+	#endif
+	#ifdef __FT_memcpy
+		test_memcpy();
+	#endif
+	#ifdef __FT_memset
+		test_memset();
 	#endif
 	printf("================  Part 3 - Cat ==============================\n");
 
