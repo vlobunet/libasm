@@ -14,6 +14,8 @@
 #define __FT_puts
 #define __FT_memcpy
 #define __FT_memset
+#define __FT_strdup
+#define __FT_cat
 
 #include "../includes/asm_libft.h"
 #include <stdio.h> 
@@ -924,6 +926,36 @@ void	test_memset(void)
 	puts("");	
 }
 
+//=========================================== FT_STRDUP_TEST ===================================
+
+void	test_strdup(void)
+{
+	WHITE;
+	write(1, "ft_strdup  : ", 13);
+	strcmp(ft_strdup("aaaaa"), "aaaaa") == 0 ? OK : KO;
+	RESET;
+	strcmp(ft_strdup(""), "") == 0 ? OK : KO;
+	RESET;
+	strcmp(ft_strdup("ok\0null"), "ok\0null") == 0 ? OK : KO;
+	RESET;
+	puts("");
+}
+
+//=========================================== FT_CAT_TEST =====================================
+
+void test_ft_cat(char *v, int fd)
+{
+	if (!v)
+		ft_cat(0);
+	else
+	{
+		if ((fd = open(v, O_RDONLY)) > 0)
+			ft_cat(fd);
+		else
+			perror("open");
+	}
+}
+
 int	main(int c, char **v)
 {
 	if (!c || !v || !v[1])
@@ -969,8 +1001,13 @@ int	main(int c, char **v)
 	#ifdef __FT_memset
 		test_memset();
 	#endif
+	#ifdef __FT_strdup
+		test_strdup();
+	#endif
 	printf("================  Part 3 - Cat ==============================\n");
-
+	#ifdef __FT_cat
+		test_ft_cat(v[1], 0);
+	#endif
 	printf("================  Bonus part ================================\n");	
 	#ifdef __FT_putstr_fd
 		test_putstr_fd();

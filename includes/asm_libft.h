@@ -22,5 +22,7 @@ int		ft_tolower(int c);
 int		ft_puts(const char *s);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	*ft_memset(void *memptr, int val, size_t num);
+char	*ft_strdup(const char *s);
+void	ft_cat(int fd);
 
 #endif

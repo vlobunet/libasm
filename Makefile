@@ -15,13 +15,15 @@ SRC =	ft_putchar_fd.s \
 		ft_tolower.s \
 		ft_puts.s \
 		ft_memcpy.s \
-		ft_memset.s
+		ft_memset.s \
+		ft_strdup.s \
+		ft_cat.s
 
 OBJDIR = objs
 
 OBJ = $(addprefix ${OBJDIR}/, $(SRC:.s=.o))
 
-AS = /usr/local/Cellar/nasm/2.14.02/bin/nasm
+AS = nasm
 
 ASFLAGS = -f macho64 -g
 

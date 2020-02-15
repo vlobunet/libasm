@@ -1,2 +1,0 @@
-# libasm
-by vlobunet
